@@ -46,21 +46,15 @@
     
     </style>
     <script>
-      let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
+    let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
+    
+    audio.loop = true;
 
+    let playButton = document.getElementById('playButton');
 
-audio.loop = true;
-
-
-let hasPlayed = false;
-
-
-document.addEventListener('mousemove', function() {
-    if (!hasPlayed) {
+    playButton.addEventListener('click', function() {
         audio.play();
-        hasPlayed = true;
-    }
-});
+    });
 </script>
 </head>
 <body>
@@ -69,9 +63,7 @@ document.addEventListener('mousemove', function() {
     <div class="main-content">
         <h1 style="font-size:72px"><u>OriginO</u></h1>
         <p>Good morning! We are a video-game development company focused on delivering the best experiences!</p>
-        <script>
-   
-</script>
+        <button id="playButton">play moosic</button>
         
         <hr>
     </div>
