@@ -1,8 +1,0 @@
-@font-face {
-    font-family: 'lilian';
-    src: url('Dreaming of Lilian.ttf') format('truetype');
-}
-
-body {
-    font-family: 'lilian', sans-serif;
-}
