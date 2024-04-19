@@ -46,11 +46,21 @@
     
     </style>
     <script>
-       let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
+      let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
+
 
 audio.loop = true;
 
-audio.play();
+
+let hasPlayed = false;
+
+
+document.addEventListener('mousemove', function() {
+    if (!hasPlayed) {
+        audio.play();
+        hasPlayed = true;
+    }
+});
 </script>
 </head>
 <body>
