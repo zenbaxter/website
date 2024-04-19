@@ -38,29 +38,92 @@
         footer {
             font-family: 'lilian', sans-serif; 
         }
+         #fullscreenImage {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('src/blackcat.gif') no-repeat center center;
+        background-size: cover;
+        z-index: 1000;
+    }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const floatingImg = document.getElementById('floatingImg');
-            document.addEventListener('mousemove', function(event) {
-                let mouseX = event.clientX;
-                let mouseY = event.clientY;
-                floatingImg.style.transform = `translate3d(${50}px, ${50}px, 0)`;
-            });
-        });
-    </script>
+    // Select the button and image container
+    const button = document.getElementById('enterFullscreen');
+    const fullscreenImage = document.getElementById('fullscreenImage');
+
+    // Function to enter fullscreen mode
+    function enterFullscreen(element) {
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) { /* Firefox */
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { /* IE/Edge */
+            element.msRequestFullscreen();
+        }
+    }
+
+    // Event listener for the button
+    button.addEventListener('click', function() {
+        enterFullscreen(document.documentElement); // Pass the <html> element to be fullscreen
+    });
+
+    // Listen for fullscreen change events
+    document.addEventListener('fullscreenchange', function() {
+        if (document.fullscreenElement) {
+            fullscreenImage.style.display = 'block'; // Show the image if in fullscreen
+        } else {
+            fullscreenImage.style.display = 'none';  // Hide the image if not in fullscreen
+        }
+    });
+
+    document.addEventListener('webkitfullscreenchange', function() {
+        if (document.webkitIsFullScreen) {
+            fullscreenImage.style.display = 'block';
+        } else {
+            fullscreenImage.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('mozfullscreenchange', function() {
+        if (document.mozFullScreen) {
+            fullscreenImage.style.display = 'block';
+        } else {
+            fullscreenImage.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('msfullscreenchange', function() {
+        if (document.msFullscreenElement) {
+            fullscreenImage.style.display = 'block';
+        } else {
+            fullscreenImage.style.display = 'none';
+        }
+    });
+
+</script>
 </head>
 <body>
+    
     <marquee>Welcome to ORIGINO!</marquee>
     <div class="main-content">
         <h1>ORIGINO!</h1>
         <p>Good morning! We are a video-game development company focused on delivering the best experiences!</p>
-        <img src="https://preview.redd.it/deq2jb3zi8881.gif?width=436&auto=webp&s=fcfa34ee2ba3903179b1c86fdd2c8bdcf5d64a74" alt="Cool 90s GIF">
-         <img src="src/blackcat.gif" alt="gato" id="floatingImg">
+        <img src="https://preview.redd.it/deq2jb3zi8881.gif?width=436&auto=webp&s=fcfa34ee2ba3903179b1c86fdd2c8bdcf5d64a74" alt="faf">
         <hr>
     </div>
     <footer>
         <p>Copyright © 1992</p>
     </footer>
+    <!-- Button to trigger fullscreen -->
+<button id="enterFullscreen">Enter Fullscreen</button>
+
+<!-- Fullscreen image element -->
+<div id="fullscreenImage"></div>
 </body>
 </html>
