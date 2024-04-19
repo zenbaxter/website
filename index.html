@@ -39,6 +39,16 @@
             font-family: 'lilian', sans-serif; 
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingImg = document.getElementById('floatingImg');
+            document.addEventListener('mousemove', function(event) {
+                let mouseX = event.clientX;
+                let mouseY = event.clientY;
+                floatingImg.style.transform = `translate3d(${mouseX - 50}px, ${mouseY - 50}px, 0)`;
+            });
+        });
+    </script>
 </head>
 <body>
     <marquee>Welcome to ORIGINO!</marquee>
@@ -46,6 +56,7 @@
         <h1>ORIGINO!</h1>
         <p>Good morning! We are a video-game development company focused on delivering the best experiences!</p>
         <img src="https://preview.redd.it/deq2jb3zi8881.gif?width=436&auto=webp&s=fcfa34ee2ba3903179b1c86fdd2c8bdcf5d64a74" alt="Cool 90s GIF">
+         <img src="cubes.gif" alt="Floating Cube GIF" id="floatingImg">
         <hr>
     </div>
     <footer>
