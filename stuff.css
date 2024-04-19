@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'MyCustomFont';
-    src: url('fonts/MyCustomFont.ttf') format('truetype');
+    font-family: 'lilian';
+    src: url('Dreaming of Lilian.ttf') format('truetype');
 }
 
 body {
-    font-family: 'MyCustomFont', sans-serif;
+    font-family: 'lilian', sans-serif;
 }
