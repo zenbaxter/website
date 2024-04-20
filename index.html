@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-  
     <title>ORIGINO!</title>
-   <link rel="shortcut icon" href="src/favicon.ico">
+    <link rel="shortcut icon" href="src/favicon.ico">
     <style>
         @font-face {
             font-family: 'lilian';
@@ -15,8 +13,8 @@
             color: white;
             font-family: 'lilian', sans-serif;
             text-align: center;
-            
             background-image: url('src/cubes.gif');
+overflow: hidden
         }
         marquee {
             font-size: 24px;
@@ -32,7 +30,7 @@
             margin: auto;
             width: 60%;
             font-family: 'lilian', sans-serif;
-           background: linear-gradient(to bottom, #000000, #006C56);
+            background: linear-gradient(to bottom, #000000, #004C56);
         }
         a {
             color: lime;
@@ -41,54 +39,117 @@
         img {
             border: 2px solid white;
         }
-      
         footer {
-             font-family: 'Comic Sans', cursive; 
-            
+            font-family: 'Comic Sans', cursive; 
         }
-    
+#playButton { 
+font-family: 'Comic Sans MS', cursive; 
+background-color: #000000;
+color: white;
+}
+
+#img {
+ border: 0px solid white;
+
+  height: 8rem;
+  width: 8rem;
+  transition: all 1s linear;
+  perspective: 1000;
+  transform-style: preserve-3d;
+
+  position: absolute; 
+  left: calc(50vw - 1rem); 
+}
+
+@keyframes move {
+  from {
+    left:100%;
+  top: 60%;
+  }
+  to {  
+    left:30%;
+top: 60%;
+  }
+}
+@keyframes moveback {
+  from {
+    left:30%;
+  top: 60%;
+  }
+  to {  
+    left:100%;
+top: 60%;
+  }
+}
+.animate-img {
+  animation: move 5000ms linear forwards; 
+}
+.animate-img2 {
+  animation: moveback 1000ms linear forwards; 
+}
     </style>
-   
 </head>
 <body>
-  <!-- GOTCHA! -->
     <marquee>Welcome to ORIGINO!</marquee>
     <div class="main-content">
         <h1 style="font-size:72px">OriginO</h1>
         <p>Good morning! We are a video-game development company focused on delivering the best experiences!</p>
-
-       
         <hr>
-<br>
+        <br>
+        <br>
+        <button id="playButton" style="float: left;">play music c:</button>
+        <span id="timeDisplay" style="float: left; 0px; color: white;">0 minutes and 0 seconds</span>
+      <img id="img" src="https://media.tenor.com/Qa8OjyKRr3MAAAAi/hood-irony-hood.gif">
 
-<br>
- <button id="playButton" style="float: left;"> play moosic</button>
-        
-<br>
+        <br>
     </div>
 
     <script>
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
         document.addEventListener('DOMContentLoaded', function () {
             let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
             audio.loop = true;
+let runningman= document.getElementById('img');
 
             let playButton = document.getElementById('playButton');
+            let timeDisplay = document.getElementById('timeDisplay');
             let playing = false;
 
             playButton.addEventListener('click', function() {
                 if (!playing) {
-                    playing = true;
-                    playButton.value = "mute moosic";
-                    audio.play();
+                     playButton.disabled = true;
+            img.classList.add('animate-img'); // Add the animation class
+            setTimeout(function () { // Enable button after 5 seconds
+                playButton.disabled = false;
+playing = true;
+            playButton.textContent = "SHUT UP SHUT UUUP";
+            audio.play();
+img.classList.add('animate-img2');
+            }, 5000);
+            
                 } else {
+
                     playing = false;
-                    playButton.value = "play moosic";
+                    
+                    playButton.textContent = "play music c:";
                     audio.pause();
-                    audio.currentTime = 0;
+               
                 }
+            });
+
+            audio.addEventListener('timeupdate', function() {
+                let minutes = Math.floor(audio.currentTime / 60);
+                let seconds = Math.floor(audio.currentTime % 60);
+                timeDisplay.textContent = minutes.toString() + ' minutes and ' + seconds.toString()+' seconds ';
             });
         });
     </script>
 </body>
-   
 </html>
