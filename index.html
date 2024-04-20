@@ -43,7 +43,7 @@ overflow: hidden
             font-family: 'Comic Sans', cursive; 
         }
 #playButton { 
-  font-family: 'Comic Sans', cursive; 
+font-family: 'Comic Sans MS', cursive; 
 background-color: #000000;
 color: white;
 }
@@ -92,7 +92,7 @@ top: 60%;
     }
     to {
         /* left and top will be dynamically set in JavaScript */
-        top: 60%;
+        
     }
 }
 
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let playing = false;
 setTimeout(() => {
                 img.style.left = '100%'; // Clear any previous left settings
-                img.style.right = '0%'; // Start from the far right
+               
                 img.style.animationName = 'move-to-button';
                 img.style.right = 'auto';
                 img.style.left = imgLeft + 'px'; // Dynamically set the ending position
@@ -150,19 +150,22 @@ setTimeout(() => {
 
             // Get the button's position
             let buttonRect = playButton.getBoundingClientRect();
-            let buttonPositionX = buttonRect.left + window.scrollX; // X position of the button, adjusted for scrolling
-
+            let buttonPositionX = buttonRect.left + window.scrollX; 
+let buttonPositionY = buttonRect.top + window.scrollY; 
             // Calculate the required left position for the image to match the button
             let imgLeft = buttonPositionX ;
+let imgTop = buttonPositionY ;
 
             // Set dynamic positions for the animation
             img.style.animationName = 'none'; // Reset animation
             setTimeout(() => {
                 img.style.left = 'auto'; // Clear any previous left settings
-                img.style.right = '100%'; // Start from the far right
+    
                 img.style.animationName = 'move-to-button';
-                img.style.right = 'auto';
-                img.style.left = imgLeft + 'px'; // Dynamically set the ending position
+               
+                img.style.left = imgLeft + 'px'; // Dynamically set the ending position'
+               img.style.top = imgTop + 'px'; // Dynamically set the ending position'
+               
                 img.classList.add('animate-img');
             }, 10);
 
