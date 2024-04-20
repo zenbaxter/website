@@ -57,27 +57,31 @@
         
         <hr>
     </div>
- <script>
-    let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
-    
-    audio.loop = true;
+<input type="button" value="play moosic" id="playButton">
 
-    let playButton = document.getElementById('playButton');
-    let playing = false;
-    playButton.addEventListener('click', function() {
-        if (!playing) {
-            playing = true;
-            playButton.value = "mute moosic";
-            audio.play();
-        } else {
-            playing = false;
-            playButton.value = "play moosic";
-            audio.pause();
-            audio.currentTime = 0;
-        }
-        
-    });
-</script>
+    <script>
+        // Wait for the DOM to fully load
+        document.addEventListener('DOMContentLoaded', function () {
+            let audio = new Audio("https://origino.dev/src/sitesong.mp3?raw=true");
+            audio.loop = true;
+
+            let playButton = document.getElementById('playButton');
+            let playing = false;
+
+            playButton.addEventListener('click', function() {
+                if (!playing) {
+                    playing = true;
+                    playButton.value = "mute moosic";
+                    audio.play();
+                } else {
+                    playing = false;
+                    playButton.value = "play moosic";
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            });
+        });
+    </script>
 </body>
      <footer>
         <p>Copyright © 1992 All Rights Reversed</p>
