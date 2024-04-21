@@ -27,6 +27,7 @@ overflow: hidden
             background-color: #000000;
             border: 3px solid white;
             padding: 20px;
+            
             margin: auto;
             width: 60%;
             font-family: 'lilian', sans-serif;
@@ -63,6 +64,11 @@ color: white;
   position: absolute; /* Use absolute for exact control */
   right: 0; /* Start from the right edge of the viewport */
   top: 60%; /* Adjust the vertical positioning to match the button if necessary */
+}
+#logo {
+    height: 8rem;
+    width: 16rem;
+    border: 0px;
 }
 @keyframes move {
   from {
@@ -107,7 +113,8 @@ top: 60%;
 <body>
     <marquee>Welcome to ORIGINO!</marquee>
     <div class="main-content">
-    <h1 style="font-size:72px">OriginO</h1>
+        <img id="logo" src="src/logo4.png">
+  
     <p>Good morning! We are a video-game development company focused on delivering the best experiences!</p>
     <hr>
     <div class="container">
