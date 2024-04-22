@@ -142,11 +142,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let timeDisplay = document.getElementById('timeDisplay');
     let playing = false;
 setTimeout(() => {
-                img.style.left = '100%'; // Clear any previous left settings
+                img.style.left = '100%'; 
                
                 img.style.animationName = 'move-to-button';
                 img.style.right = 'auto';
-                img.style.left = imgLeft + 'px'; // Dynamically set the ending position
+                img.style.left = imgLeft + 'px';
                 img.classList.add('animate-img');
             }, 10);
 
@@ -155,23 +155,20 @@ setTimeout(() => {
         if (!playing) {
             playButton.disabled = true;
 
-            // Get the button's position
             let buttonRect = playButton.getBoundingClientRect();
             let buttonPositionX = buttonRect.left + window.scrollX; 
 let buttonPositionY = buttonRect.top + window.scrollY; 
-            // Calculate the required left position for the image to match the button
             let imgLeft = buttonPositionX ;
 let imgTop = buttonPositionY ;
 
-            // Set dynamic positions for the animation
-            img.style.animationName = 'none'; // Reset animation
+            img.style.animationName = 'none'; 
             setTimeout(() => {
-                img.style.left = 'auto'; // Clear any previous left settings
+                img.style.left = 'auto';
     
                 img.style.animationName = 'move-to-button';
                
-                img.style.left = imgLeft + 'px'; // Dynamically set the ending position'
-               img.style.top = imgTop + 'px'; // Dynamically set the ending position'
+                img.style.left = imgLeft + 'px'; 
+               img.style.top = imgTop + 'px'; 
                
                 img.classList.add('animate-img');
             }, 10);
@@ -181,14 +178,14 @@ let imgTop = buttonPositionY ;
                 playButton.textContent = "SHUT UP SHUT UUUP";
                 audio.play();
                 playing = true;
-img.classList.remove('animate-img'); // Reset animations
+img.classList.remove('animate-img'); 
             setTimeout(() => {
          
                 img.style.animationName = 'moveback';
 
                 img.classList.add('animate-img2');
             }, 10);
-            }, 5000); // Re-enable the button after 5 seconds
+            }, 5000);
         } else {
             playing = false;
             playButton.textContent = "play music c:";
