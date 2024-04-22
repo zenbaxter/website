@@ -61,10 +61,9 @@ color: white;
   border: 0px;
   transition: all 1s linear;
   transform-style: preserve-3d;
-  position: absolute; /* Use absolute for exact control */
-  right: 0; /* Start from the right edge of the viewport */
-  top: 60%; /* Adjust the vertical positioning to match the button if necessary */
-}
+  position: absolute; 
+  right: 0;
+  top: 60%; 
 #logo {
     height: 8rem;
     width: 32rem;
@@ -93,11 +92,11 @@ top: 60%;
 
 @keyframes move-to-button {
     from {
-        left: 100%; /* Start from the far right */
+        left: 100%; 
         top: 60%;
     }
     to {
-        /* left and top will be dynamically set in JavaScript */
+
         
     }
 }
@@ -111,6 +110,7 @@ top: 60%;
     </style>
 </head>
 <body>
+    <!-- GOTCHA! -->
     <marquee>Welcome to ORIGINO!</marquee>
     <div class="main-content">
         <img id="logo" src="src/logo4.png">
