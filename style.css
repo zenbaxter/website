@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'lilian';
+    src: url('stuff/webfont.ttf') format('truetype');
+}
+
+body {
+    background-color: #ffffff;
+    color: white;
+    font-family: 'lilian', sans-serif;
+    text-align: center;
+    background-image: url('stuff/cubes.gif');
+overflow: hidden
+}
+
+#main-content {
+    background-color: #000000;
+    border: 3px solid white;
+    padding: 20px;
+    
+    margin: auto;
+    width: 60%;
+    font-family: 'lilian', sans-serif;
+    background: linear-gradient(to bottom, #000000, #004C56);
+}
+
+#logo {
+height: 8rem;
+width: 32rem;
+border: 0px;
+}
