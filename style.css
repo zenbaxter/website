@@ -16,19 +16,16 @@ body {
 #main-content {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* vertical centering */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    font-family: 'lilian', sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
 #stickman {
+    display: block;
     height: 20px;
-    margin: auto;
-    border: 0;
 }
+
