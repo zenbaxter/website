@@ -4,27 +4,31 @@
 }
 
 body {
-    background-color: #ffffff;
-    color: white;
+    background-color: #fff;
+    color: #fff;
     font-family: 'lilian', sans-serif;
     text-align: center;
-    background-image: url('stuff/cubes.gif');
-overflow: hidden
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 #main-content {
-    background-color: #000000;
-    border: 3px solid white;
-    padding: 20px;
-    
-    margin: auto;
-    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     font-family: 'lilian', sans-serif;
-    background: linear-gradient(to bottom, #000000, #004C56);
+    margin: 0;
+    padding: 0;
 }
 
-#logo {
-height: 8rem;
-width: 32rem;
-border: 0px;
+#stickman {
+    height: 20px;
+    margin: auto;
+    border: 0;
 }
