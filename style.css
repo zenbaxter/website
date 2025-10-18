@@ -3,33 +3,29 @@ body {
     color: #fff;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
-    overflow: hidden;
     margin: 0;
     padding: 0;
+    overflow-y: auto;  /* allow scrolling */
 }
 
 p {
     color: black;
     display: block;
     text-align: center;
-    font-size:small;
+    font-size: small;
     margin-top: 8px;
 }
 
 #main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    display: block;              /* remove flex to let content flow */
     text-align: center;
+    padding: 20px 0;
+    width: 100%;
 }
 
 #main-content > div {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #stickman {

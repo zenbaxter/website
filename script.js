@@ -75,3 +75,46 @@ function animate(){
     }
 }
 setInterval(animate,60);
+
+const main = document.getElementById('main-content');
+let stickmanCount = 1;
+
+function addContent(count = 20) {
+  for (let i = 0; i < count; i++) {
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.flexWrap = 'wrap';          // allow wrapping
+    div.style.justifyContent = 'center';
+    div.style.alignItems = 'center';
+    div.style.marginBottom = '10px';
+
+    for (let j = 0; j < stickmanCount; j++) {
+      const img = document.createElement('img');
+      img.src = 'stuff/dancing.gif';
+      img.className = 'stickman';
+      img.style.margin = '5px';
+      div.appendChild(img);
+    }
+
+    const p = document.createElement('p');
+    p.textContent = `look at ${stickmanCount} of them go`;
+    p.style.width = '100%';
+    p.style.textAlign = 'center';
+
+    const wrapper = document.createElement('div');
+    wrapper.appendChild(div);
+    wrapper.appendChild(p);
+    main.appendChild(wrapper);
+
+    stickmanCount++;
+  }
+}
+
+addContent();
+
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+    addContent();
+  }
+});
+
