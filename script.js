@@ -2,10 +2,6 @@
 
 
 
-document.getElementById("stickman").onclick = function () {
-
-    console.log("look at him go")
-}
 
 document.head = document.head || document.getElementsByTagName('head')[0];
 function changeFavicon(src) {
@@ -69,52 +65,120 @@ function animate(){
             changeFavicon("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAVAgMAAAA/TvYGAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAMUExURf8A/wAAAAAAAP8A/3EtSocAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfpCRUVMR0o/i/GAAAAOUlEQVQI12NgQAOsDmAyNBREs4YtDQBRkZFIlCiUgsiJZoWCqWlTIYJTkQUjUag0FGrqVExKDEQBAFcHFtUFx+OZAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI1LTA5LTIxVDIxOjQ4OjMxKzAwOjAwVAwvsAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNS0wOS0yMVQyMTo0ODozMSswMDowMCVRlwwAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjUtMDktMjFUMjE6NDk6MjkrMDA6MDBiw5MUAAAAAElFTkSuQmCC");
             break;
     }
-    animate.i = animate.i + 1;
-    if(animate.i == 14){
-        animate.i = 0;
-    }
+    animate.i = (animate.i + 1) % 15;
+
 }
 setInterval(animate,60);
 
 const main = document.getElementById('main-content');
-let stickmanCount = 1;
 
-function addContent(count = 20) {
+// Build first slide from existing static markup if present
+(function setupFirstSlide() {
+  const existingImg = document.getElementById('stickman'); // static man
+  let startCount = 1;
+
+  const wrapper = document.createElement('div');
+  wrapper.style.height = '100vh';
+  wrapper.style.display = 'flex';
+  wrapper.style.flexDirection = 'column';
+  wrapper.style.justifyContent = 'center';
+  wrapper.style.alignItems = 'center';
+
+  const row = document.createElement('div');
+  row.style.display = 'flex';
+  row.style.flexWrap = 'wrap';
+  row.style.justifyContent = 'center';
+  row.style.alignItems = 'center';
+
+  if (existingImg) {
+    // move static img and its following <p> into the first slide
+    const existingP = existingImg.nextElementSibling?.tagName === 'P'
+      ? existingImg.nextElementSibling
+      : Object.assign(document.createElement('p'), { textContent: 'look at him go' });
+
+    existingImg.className = 'stickman';
+    existingImg.style.margin = '5px';
+    row.appendChild(existingImg);
+
+    existingP.textContent = 'look at him go';
+    existingP.style.marginTop = '15px';
+    existingP.style.textAlign = 'center';
+
+    wrapper.appendChild(row);
+    wrapper.appendChild(existingP);
+
+    // ensure only the slide remains
+    main.innerHTML = '';
+    main.appendChild(wrapper);
+
+    startCount = 2; // next slide will have 2
+  } else {
+    // no static man, create the first slide programmatically
+    const img = document.createElement('img');
+    img.src = 'stuff/dancing.gif';
+    img.className = 'stickman';
+    img.style.margin = '5px';
+    row.appendChild(img);
+
+    const p = document.createElement('p');
+    p.textContent = 'look at him go';
+    p.style.marginTop = '15px';
+    p.style.textAlign = 'center';
+
+    wrapper.appendChild(row);
+    wrapper.appendChild(p);
+    main.appendChild(wrapper);
+
+    startCount = 2;
+  }
+
+  window.stickmanCount = startCount;
+})();
+
+// Infinite slides
+function addContent(count = 1) {
   for (let i = 0; i < count; i++) {
-    const div = document.createElement('div');
-    div.style.display = 'flex';
-    div.style.flexWrap = 'wrap';          // allow wrapping
-    div.style.justifyContent = 'center';
-    div.style.alignItems = 'center';
-    div.style.marginBottom = '10px';
+    const wrapper = document.createElement('div');
+    wrapper.style.height = '100vh';
+    wrapper.style.display = 'flex';
+    wrapper.style.flexDirection = 'column';
+    wrapper.style.justifyContent = 'center';
+    wrapper.style.alignItems = 'center';
 
-    for (let j = 0; j < stickmanCount; j++) {
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.flexWrap = 'wrap';
+    row.style.justifyContent = 'center';
+    row.style.alignItems = 'center';
+
+    for (let j = 0; j < window.stickmanCount; j++) {
       const img = document.createElement('img');
       img.src = 'stuff/dancing.gif';
       img.className = 'stickman';
       img.style.margin = '5px';
-      div.appendChild(img);
+      row.appendChild(img);
     }
 
     const p = document.createElement('p');
-    p.textContent = `look at ${stickmanCount} of them go`;
-    p.style.width = '100%';
+    p.textContent = `look at ${window.stickmanCount} of them go`;
+    p.style.marginTop = '15px';
     p.style.textAlign = 'center';
 
-    const wrapper = document.createElement('div');
-    wrapper.appendChild(div);
+    wrapper.appendChild(row);
     wrapper.appendChild(p);
     main.appendChild(wrapper);
 
-    stickmanCount++;
+    window.stickmanCount++;
   }
 }
 
-addContent();
-
 window.addEventListener('scroll', () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-    addContent();
+    addContent(1);
   }
 });
 
+// Click handler for all generated images
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('stickman')) console.log('look at him go');
+});

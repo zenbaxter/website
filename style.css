@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-y: auto;  /* allow scrolling */
+    
 }
 
 p {
@@ -28,8 +29,8 @@ p {
     margin-bottom: 20px;
 }
 
-#stickman {
-    display: block;
+
+  .stickman {
     height: 20px;
-    margin: 0 auto;
-}
+  }
+  
