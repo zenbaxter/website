@@ -72,9 +72,9 @@ setInterval(animate,60);
 
 const main = document.getElementById('main-content');
 
-// Build first slide from existing static markup if present
+
 (function setupFirstSlide() {
-  const existingImg = document.getElementById('stickman'); // static man
+  const existingImg = document.getElementById('stickman');
   let startCount = 1;
 
   const wrapper = document.createElement('div');
@@ -91,7 +91,6 @@ const main = document.getElementById('main-content');
   row.style.alignItems = 'center';
 
   if (existingImg) {
-    // move static img and its following <p> into the first slide
     const existingP = existingImg.nextElementSibling?.tagName === 'P'
       ? existingImg.nextElementSibling
       : Object.assign(document.createElement('p'), { textContent: 'look at him go' });
@@ -107,7 +106,7 @@ const main = document.getElementById('main-content');
     wrapper.appendChild(row);
     wrapper.appendChild(existingP);
 
-    // ensure only the slide remains
+
     main.innerHTML = '';
     main.appendChild(wrapper);
 
@@ -178,7 +177,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Click handler for all generated images
 document.addEventListener('click', e => {
   if (e.target.classList.contains('stickman')) console.log('look at him go');
 });
